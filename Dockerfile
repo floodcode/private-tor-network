@@ -13,7 +13,7 @@
 #   
 #   docker run --rm -it -e ROLE=DA antitree/tor-server /bin/bash
 
-FROM debian:jessie
+FROM debian:bookworm
 MAINTAINER Antitree antitree@protonmail.com
 
 # Sets which version of tor to use. See the Tor Projects git page for available tags
@@ -22,7 +22,7 @@ MAINTAINER Antitree antitree@protonmail.com
 #  * tor-0.2.7.6
 #  * tor-0.2.7.5
 #  * release-0.2.1
-ENV TOR_VER="maint-0.3.4"
+ENV TOR_VER="tor-0.4.7.13"
 #ENV TOR_VER="master"
 # NOTE sometimes the master branch doesn't compile so I'm sticking with the release
 #  feel free to change this to master to get the latest and greatest
@@ -38,7 +38,7 @@ ENV TERM=xterm \
 RUN apt-get update && \
     build_temps="build-essential automake" && \ 
     build_deps="libssl-dev zlib1g-dev libevent-dev ca-certificates\
-        dh-apparmor libseccomp-dev dh-systemd \
+        dh-apparmor libseccomp-dev debhelper \
         git" && \
     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install $build_deps $build_temps \
         init-system-helpers \
@@ -67,6 +67,9 @@ COPY ./scripts/ /usr/local/bin/
 
 # Create the shared directory
 RUN mkdir ${TOR_DIR}
+
+RUN apt-get update
+RUN apt-get install -y iproute2 net-tools
 
 # ORPort, DirPort, ObfsproxyPort
 # TODO make these match the env variables
