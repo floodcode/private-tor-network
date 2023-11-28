@@ -45,7 +45,7 @@ RUN apt-get update && \
         pwgen && \
     mkdir /src && \
     cd /src && \
-    git clone https://gitlab.torproject.org/tpo/core/tor.git && \
+    git clone https://github.com/ATOR-Development/ator-protocol.git && \
     cd tor && \
     git checkout ${TOR_VER} && \
     ./autogen.sh && \

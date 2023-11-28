@@ -114,21 +114,28 @@ The container is built off of [chriswayg/tor-server](https://github.com/chrisway
 The `/util/` directory contains a few scripts to play with one the host computer. Once you have a 
 private tor network up and running you can try out some of the tools in there. 
 
-**Using Arm**:
+**Using Nyx (previous Arm)**:
 
-With the tor control port exposed to the host, you can use arm to monitor the client. 
+With the tor control port exposed to the host, you can use nyx to monitor the client. 
+Connect to any relay (or DA, client, hs, etc.)
 ```
-apt-get install tor-arm
-arm
+docker exec -it private-tor-network-relay-1 bash
 ```
-NOTE: There is a password to protect the control port right now. Enter "password" when prompted
+Install nyx inside the container (later can be moved to Dockerfile)
+```
+apt-get install nyx
+nyx
+```
+NOTE: There is a password to protect the control port right now. 
+Enter "password" when prompted
 
+In order to see circuits, go to connection section and wait few minutes until circuits are created
 ![arm screenshot](https://raw.githubusercontent.com/antitree/private-tor-network/master/doc/arm.png)
 
-You can also connect arm to one of the containers if you know it's ip. You can find the IPs by running the 
+You can also connect nyx to one of the containers if you know it's ip. You can find the IPs by running the 
 `get_consensus.py` script provided or however otherway you feel like. 
 
-```arm -i 172.19.0.3:9051```
+```nyx -i 172.23.0.7:9051```
 
 **Get Consensus**:
 
@@ -138,9 +145,14 @@ This will connect to the CLIENT docker container via the tor Control Port and do
 contains the nicknames and IPs of the relays on the network. (If this is blank, you may have to wait 30s
 while they decided on a consensus.)
 
+You may need to install stem for this
+```
+pip3 install stem
+```
+
 **Tor-prompt**:
 
-If you've installed arm you will probably also have the `tor-prompt` command. You can use it to manually 
+If you've installed nyx you will probably also have the `tor-prompt` command. You can use it to manually 
 gather information about some of the containers that have their Control Port exposed like so:
 
 ```
