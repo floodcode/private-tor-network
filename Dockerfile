@@ -14,7 +14,7 @@
 #   docker run --rm -it -e ROLE=DA antitree/tor-server /bin/bash
 
 FROM debian:bookworm
-MAINTAINER Antitree antitree@protonmail.com
+# MAINTAINER Antitree antitree@protonmail.com
 
 # Sets which version of tor to use. See the Tor Projects git page for available tags
 # Examples:
@@ -22,7 +22,7 @@ MAINTAINER Antitree antitree@protonmail.com
 #  * tor-0.2.7.6
 #  * tor-0.2.7.5
 #  * release-0.2.1
-ENV TOR_VER="tor-0.4.7.13"
+ENV TOR_VER="tor-0.4.8.9"
 #ENV TOR_VER="master"
 # NOTE sometimes the master branch doesn't compile so I'm sticking with the release
 #  feel free to change this to master to get the latest and greatest
@@ -45,7 +45,7 @@ RUN apt-get update && \
         pwgen && \
     mkdir /src && \
     cd /src && \
-    git clone https://git.torproject.org/tor.git && \
+    git clone https://gitlab.torproject.org/tpo/core/tor.git && \
     cd tor && \
     git checkout ${TOR_VER} && \
     ./autogen.sh && \

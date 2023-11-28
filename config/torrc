@@ -1,5 +1,5 @@
 # Run Tor as a regular user (do not change this)
-#User debian-tor
+# User debian-tor
 
 TestingTorNetwork 1
 
@@ -7,11 +7,11 @@ TestingTorNetwork 1
 # These typically launch a working minimal Tor network in 25s-30s,
 # and a working HS Tor network in 40-45s.
 # See authority.tmpl for a partial explanation
-#AssumeReachable 0
-#Default PathsNeededToBuildCircuits 0.6
-#Disable TestingDirAuthVoteExit
-#Disable TestingDirAuthVoteHSDir
-#Default V3AuthNIntervalsValid 3
+# AssumeReachable 0
+# Default PathsNeededToBuildCircuits 0.6
+# Disable TestingDirAuthVoteExit
+# Disable TestingDirAuthVoteHSDir
+# Default V3AuthNIntervalsValid 3
 
 ## Rapid Bootstrap Testing Options ##
 # These typically launch a working minimal Tor network in 6s-10s
@@ -30,7 +30,7 @@ TestingDirAuthVoteGuard *
 # We set TestingMinExitFlagThreshold to 0 to avoid Exit bandwidth requirements
 TestingMinExitFlagThreshold 0
 # VoteOnHidServDirectoriesV2 needs to be set for HSDirs to get the HSDir flag
-#Default VoteOnHidServDirectoriesV2 1
+# Default VoteOnHidServDirectoriesV2 1
 
 ## Options that we always want to test ##
 Sandbox 0
@@ -39,11 +39,10 @@ Sandbox 0
 RunAsDaemon 0
 ConnLimit 60
 ShutdownWaitLength 0
-#PidFile /var/lib/tor/pid
+# PidFile /var/lib/tor/pid
 Log info stdout
 ProtocolWarnings 1
 SafeLogging 0
 DisableDebuggerAttachment 0
 
 DirPortFrontPage /usr/share/doc/tor/tor-exit-notice.html
-
